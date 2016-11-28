@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="dochead">
+	<link th:href="@{/css/normalize.css}" rel="stylesheet" />
+	<link th:href="@{/css/styles.css}" rel="stylesheet" />
+	<title>St. Louis Street Cleaning Notifications</title>
+</head>
+
+<body>
+
+<nav th:fragment="navigation">
+	<ul id="user-account">
+	    <li><a href="/login">login</a></li>
+	    <li><a href="/logout">logout</a></li>
+	</ul>
+	<ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/myaccount">My Account</a></li>
+    </ul>
+</nav>
+<select name="carrier" th:fragment="carrierselect">
+	<option value="T-Mobile">T-Mobile</option>
+	<option value="Sprint">Sprint</option>
+	<option value="ATT">ATT</option>
+	<option value="Verizon">Verizon</option>
+	<option value="US Cellular">US CEllular</option>
+
+</select>
+
+</body>
+</html>

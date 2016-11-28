@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+	<div th:replace="template :: navigation"></div>
+
+	<h1>Welcome</h1>
+	<h3 th:text="${logout}"></h3>
+	<span class = "error" th:text="${confirm}"></span>
+	<p>Please <a href="/signup">register </a>to receive text notifications about street cleaning services near you, so that 
+	you can move your vehicle and not get a ticket in the city of St. Louis!
+	</p>
+	
+	</body>
+</html>

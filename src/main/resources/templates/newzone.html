@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+	<div th:replace="template :: navigation"></div>
+	<p>Observe the provided map to determine which zone(s) you would like to be notified for.</p>
+	<div id="map">map
+	<img id="map" th:src="@{/images/map.jpg}"></img>
+	
+	
+	</div>
+	
+	<form method="post">
+	   
+	    <label>Select a zone to add for notifications, you can have up to 3 zones.
+	    </label>
+	  	<input type="text" name="znumber" th:value="${znumber}"></input>
+	    <button type="submit">Create</button>
+	</form>
+
+</body>
+</html>
