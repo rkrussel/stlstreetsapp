@@ -11,7 +11,7 @@ import com.stlstreetsapp.services.NotificationService;
 
 
 @Controller
-public class MailController extends AuthenticationController{
+public class MailController {
 	private ZoneDao zoneDao;
 	private UserDao userDao;
 	private JavaMailSender javaMailSender;
