@@ -1,0 +1,60 @@
+
+
+body {
+    font-family: sans-serif;
+    color: #FBFCF1;
+    background-image: url('../images/arch.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+     -webkit-background-size: cover;
+  	-moz-background-size: cover;
+ 	 -o-background-size: cover;
+ 	 background-size: cover;
+ 	 text-align: center;
+ 	 padding: 25px;
+}
+
+
+
+
+
+#wrapper{
+	background-color: #74746F;
+	opacity: .77;
+	height: auto;
+	width: 80%;
+	padding: 25px;
+	margin: 5px auto;
+	
+}
+.form-group{
+	text-align: left;
+	margin: 5px auto;
+}
+ 
+
+
+.error{
+	color: red;
+	font-size: 25px;
+}
+.success{
+	color: green;
+	font-size: 25px;
+}
+.help-block{
+	color: white;
+}
+#signup{
+	margin-top: 10px;
+	text-align: center;
+}
+table{
+	margin: 0 auto;
+}
+#twitter{
+	
+	
+	margin:0 auto;
+}
+

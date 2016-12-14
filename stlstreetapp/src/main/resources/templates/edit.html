@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+	<div th:replace="template :: navigation"></div>
+	<div class="container-fluid">
+		<h1>Edit Profile</h1>
+		<div id="wrapper">
+			<form class="form-horizontal" method="post">
+<fieldset>
+
+
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password:</label>
+  <div class="col-md-4">
+    <input  name="password" type="password" placeholder="Enter New Password" class="form-control input-md"></input>
+    <span class="help-block">Must be 4-12 characters long and contain 1 capital and 1 number.</span>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">Re-type New Password:</label>
+  <div class="col-md-4">
+    <input name="verify" type="password"  class="form-control input-md"></input>
+    <span class="help-block">Passwords must match.</span>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="telephhone number">Telephone Number:</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="number" type="text" placeholder="##########" class="form-control input-md"></input>
+  <span class="help-block">10 digits number</span>  
+  </div>
+</div>
+
+ 	<div th:replace="template :: carrierselect" class="form-group"></div>
+ 	
+ 	<div class="form-group">
+ 	<label class="col-md-4 control-label" for="signup"></label>  
+   		<div class="col-md-4 center-block">
+    		<button id="update" type="submit" class="btn btn-success center-block">Update</button>
+ 		</div>
+ 	</div>
+
+</fieldset>
+</form>
+	</div>
+		</div>
+	
+</body>
+</html>
