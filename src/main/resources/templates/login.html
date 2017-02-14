@@ -3,31 +3,35 @@
 <head th:replace="template :: dochead">
 </head>
 <body>
-
 	<div th:replace="template :: navigation"></div>
-
-	<h1>Login</h1>
-    <p class="error" th:text="${error}"></p>
-    <form method="post">
-        <table>
-            <tr>
-                <td><label for="email">Email address</label></td>
-                <td>
-                    <input name="email" type="text" th:value="${email}"></input>
-                	<span class = "error" th:text="${noUser}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="password">Password</label></td>
-                <td>
-                    <input name="password" type="password" th:value="${password}"></input>
-                	<span class = "error" th:text="${invalid}"></span>
-                </td>
-            </tr>
-        </table>
-        <button type="submit">Log In</button>
-    </form>
-    <p>Don't have an account? <a href="/signup">Create one!</a></p>
-
+	<div class="container-fluid">
+		<div id="wrapper" >
+		<h1>Login</h1>
+	    <p class="error" th:text="${error}"></p>
+	    <form class="form-horizontal" method="post">
+	<fieldset>
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="email">E-Mail:</label>  
+		  <div class="col-md-4">
+		  <input  name="email" type="text" placeholder="name@example.com" class="form-control input-md"></input>
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="password">Password:</label>
+		  <div class="col-md-4">
+		    <input  name="password" type="password" placeholder="Enter Password" class="form-control input-md"></input>
+		  </div>
+		</div>
+		 	<div class="form-group">
+		 	<label class="col-md-4 control-label" for="signup"></label>  
+		   		<div class="col-md-4 center-block">
+		    		<button id="signup" type="submit" class="btn btn-success center-block">Sign-Up!</button>
+		 		</div>
+		 	</div>
+	</fieldset>
+</form>
+	    <p>Don't have an account? <a href="/signup">Create one!</a></p>
+	</div>
+	</div>
 </body>
 </html>

@@ -5,42 +5,54 @@
 <body>
 
 	<div th:replace="template :: navigation"></div>
+	<div class="container-fluid">
+		<h1>Edit Profile</h1>
+		<div id="wrapper">
+			<form class="form-horizontal" method="post">
+<fieldset>
 
-	<h1>Edit Profile</h1>
-	<form method="post">
-	    <table>
-	       
-	        <tr>
-	            <td><label for="password">New Password</label></td>
-	            <td>
-	                <input name="password" type="password" th:value="${password}"></input>
-	                <span class="error" th:text="${passwordError}"></span>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td><label for="verify">Re-Type New Password</label></td>
-	            <td>
-	                <input name="verify" type="password" th:value="${verify}"></input>
-	                <span class="error" th:text="${verifyError}"></span>
-	            </td>
-	        </tr>
-	    	<tr>
-	            <td><label for="number">Change Cell phone number</label></td>
-	            <td>
-	                <input name="number" type="text" th:value="${number}"></input>
-	                <span class="error" th:text="${numberError}"></span>
-	            </td>
-	        </tr>
-	    	<tr>
-	            <td><label for="carrier">Change Cell phone carrier</label></td>
-	            <td>
-	            	<select th:replace="template :: carrierselect"></select>
-	            </td>
-	        </tr>
-	    
-	    </table>
-	    <button type="submit">Update</button>
-	</form>
 
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password:</label>
+  <div class="col-md-4">
+    <input  name="password" type="password" placeholder="Enter New Password" class="form-control input-md"></input>
+    <span class="help-block">Must be 4-12 characters long and contain 1 capital and 1 number.</span>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">Re-type New Password:</label>
+  <div class="col-md-4">
+    <input name="verify" type="password"  class="form-control input-md"></input>
+    <span class="help-block">Passwords must match.</span>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="telephhone number">Telephone Number:</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="number" type="text" placeholder="##########" class="form-control input-md"></input>
+  <span class="help-block">10 digits number</span>  
+  </div>
+</div>
+
+ 	<div th:replace="template :: carrierselect" class="form-group"></div>
+ 	
+ 	<div class="form-group">
+ 	<label class="col-md-4 control-label" for="signup"></label>  
+   		<div class="col-md-4 center-block">
+    		<button id="update" type="submit" class="btn btn-success center-block">Update</button>
+ 		</div>
+ 	</div>
+
+</fieldset>
+</form>
+	</div>
+		</div>
+	
 </body>
 </html>

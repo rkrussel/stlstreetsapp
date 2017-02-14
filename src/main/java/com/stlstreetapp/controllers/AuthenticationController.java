@@ -1,5 +1,8 @@
 package com.stlstreetapp.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,10 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,14 +30,47 @@ public class AuthenticationController extends AbstractController{
 	 private HttpSession httpSession;
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
+	//display secure links if user is logged in.
+	public void checkLoggedIn(Model model, HttpServletRequest request ){
+		if (request.getSession(false) != null){
+			String myAccount = "My Account";
+			String edit ="edit";
+			String logOut = "Log out";
+			String logIn = "";
+			String newZone = "new zone";
+			model.addAttribute("myAccount", myAccount);
+			model.addAttribute("edit", edit);
+			model.addAttribute("logOut", logOut);
+			model.addAttribute("newZone", newZone);
+			model.addAttribute("logIn", logIn);
+		}else{
+			String logIn = "log in";
+			String myAccount = "";
+			String edit ="";
+			String logOut = "";
+			String newZone = "";
+			model.addAttribute("logIn", logIn);
+			model.addAttribute("myAccount", myAccount);
+			model.addAttribute("edit", edit);
+			model.addAttribute("logOut", logOut);
+			model.addAttribute("newZone", newZone);
+		}
+	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
+	public String index(HttpServletRequest request, Model model) {
+		checkLoggedIn(model, request);
+        
 		return "index";
 	}
-	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String indexPost(HttpServletRequest request, Model model) {
+		checkLoggedIn(model, request);
+        
+		return "index";
+	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLogin() {
+		
 		return "login";
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -63,10 +97,11 @@ public class AuthenticationController extends AbstractController{
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, Model model){
-        request.getSession().invalidate();
+		request.getSession().invalidate();
 		String logout = "Successfully logged out";
 		model.addAttribute("logout", logout);
-		return "redirect:/myaccount";
+		checkLoggedIn(model, request);
+		return "index";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -82,7 +117,7 @@ public class AuthenticationController extends AbstractController{
 		String carrier = request.getParameter("carrier");
 		String newNumber = number.replaceAll("[^0-9]","");
 		
-		if(email == null || password == null || verify == null || carrier == null || number == null){
+		if(email == "" || password == "" || verify == "" || carrier == "" || newNumber == ""){
 			String error = "Please complete all fields.";
 			model.addAttribute("emptyError", error);
 			return "signup";
@@ -100,7 +135,7 @@ public class AuthenticationController extends AbstractController{
 		}
 		
 		if(!newUser.isValidPassword(password)){
-			String error = "Invalid password";
+			String error = "Password must be between 4-12 characters, and contain 1 capital letter and 1 number.";
 			model.addAttribute("passwordError", error);
 			return "signup";
 		}
@@ -126,32 +161,30 @@ public class AuthenticationController extends AbstractController{
 	}	
 	@RequestMapping(value = "/newzone", method = RequestMethod.GET)
 	public String newZoneForm(HttpServletRequest request, Model model){
-		
+		checkLoggedIn(model, request);
 		return "newzone";
 	}
 	@RequestMapping(value = "/newzone", method = RequestMethod.POST)
 	public String zoneConfirm(HttpServletRequest request, Model model){
+		checkLoggedIn(model, request);
 		String znumber = request.getParameter("znumber");
-		
 		User user = getUserFromSession(httpSession);
-		Zone newZone = new Zone(user, znumber);
-		if(!newZone.checkZNumber(znumber)){
-			String error= "Please select a number between 1 and 40 and can not contain characters other than numbers.";
+		if(user.getZones().size() >= 3){
+			String error = "You already have 3 zones associated with your account";
 			model.addAttribute("error", error);
 			return "newzone";
 		}
+		Zone newZone = new Zone(user, znumber);
 		zoneDao.save(newZone);
 		NotificationService mail = new NotificationService(javaMailSender);
-		
 		mail.confirmEmail(user);
-		
 		return "confirm";
 	}
 	
 	@RequestMapping(value = "/myaccount", method = RequestMethod.GET)
 	public String showAccount(HttpServletRequest request, Model model){
+		checkLoggedIn(model, request);
 		User user = getUserFromSession(httpSession);
-		
 		List<Zone>zones = zoneDao.findByEmail(user);
 		model.addAttribute("email", user.getEmail());
 		model.addAttribute("number", user.getNumber());
@@ -163,11 +196,13 @@ public class AuthenticationController extends AbstractController{
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editForm(HttpServletRequest request, Model model){
+		checkLoggedIn(model, request);
 		return "edit";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String edit(HttpServletRequest request, Model model){
+		checkLoggedIn(model, request);
 		String password = request.getParameter("password");
 		String verify = request.getParameter("verify");
 		String number = request.getParameter("number");
@@ -203,19 +238,20 @@ public class AuthenticationController extends AbstractController{
 		userDao.save(user);
 		return "redirect:/myaccount";
 	}
-	//@Scheduled(cron = "*/2 * * * * *")
+	
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-	public String cancelAccount(){
+	public String cancelAccount(Model model, HttpServletRequest request){
+		checkLoggedIn(model, request);
 		return "cancel";
 	}
 	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
 	public String cancelConfirm(HttpServletRequest request, Model model){
+		checkLoggedIn(model, request);
 		User user = getUserFromSession(httpSession);
 		userDao.delete(user);
 		String confirm = "Your account has been deleted and you will no longer receive notifications.";
 		model.addAttribute("confirm", confirm);
 		return "index";
 	}
-	
 		
 }

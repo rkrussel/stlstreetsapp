@@ -33,7 +33,7 @@ public class NotificationService {
 	}
 	
 	public void mailZone(List<Zone> zoneOne, String time){
-		System.out.println("zone1 test");
+		System.out.println("test pass");
 		
 		for(Zone x : zoneOne){
 			User user = x.getEmail();
@@ -42,7 +42,7 @@ public class NotificationService {
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setTo(user.buildNumberEmail(number, carrier));
 			msg.setFrom("stlstreetsapp@gmail.com");
-			msg.setSubject("Confirmation");
+			msg.setSubject("Reminder");
 			msg.setText("Street cleaning scheduled for your street between " + time + ". Move your vehicle to avoid a ticket!");
 			javaMailSender.send(msg);
 			

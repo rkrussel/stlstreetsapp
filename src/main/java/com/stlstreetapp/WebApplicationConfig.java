@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.stlstreetapp.models.Zone;
-import com.stlstreetsapp.services.NotificationService;
 @Configuration
 @EnableScheduling
 @ComponentScan(basePackages="com.stlstreetapp.models")
@@ -30,6 +29,8 @@ public class WebApplicationConfig extends WebMvcConfigurerAdapter {
     public Zone test(){
     	return new Zone();
     }
+    
+   
     
     
 }

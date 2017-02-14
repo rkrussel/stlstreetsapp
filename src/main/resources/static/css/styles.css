@@ -1,63 +1,69 @@
+
+
 body {
     font-family: sans-serif;
-    width: 800px;
-    margin: 0 auto;
-    padding: 10px;
+    color: #FBFCF1;
+    background-image: url('../images/arch.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+     -webkit-background-size: cover;
+  	-moz-background-size: cover;
+ 	 -o-background-size: cover;
+ 	 background-size: cover;
+ 	 text-align: center;
+ 	 padding: 25px;
 }
-
-.error {
-    color: red;
+#successmodal{
+	color: black;
 }
-
-label {
-    display: block;
-    font-size: 20px;
-}
-
-input[type=text],
-input[type=password],
-input[type=email] {
-    width: 400px;
-    font-size: 20px;
-    padding: 2px;
-}
-
-textarea {
-    width: 400px;
-    height: 200px;
-    font-size: 17px;
-    font-family: monospace;
-}
-
-input[type=submit] {
-    font-size: 24px;
-}
-
-hr {
-    margin: 20px auto;
+#testwrap{
+	height: auto;
+	width: 80%;
+	padding: 25px;
+	margin: 5px auto;
 }
 
 
 
 
 
+#wrapper{
+	background-color: #74746F;
+	opacity: .77;
+	height: auto;
+	width: 80%;
+	padding: 25px;
+	margin: 5px auto;
+	
+}
+.form-group{
+	text-align: left;
+	margin: 5px auto;
+}
+ 
 
 
-nav ul {
-    padding: 0;
-    display: inline-block;
+.error{
+	color: red;
+	font-size: 25px;
+}
+.success{
+	color: green;
+	font-size: 25px;
+}
+.help-block{
+	color: white;
+}
+#signup{
+	margin-top: 10px;
+	text-align: center;
+}
+table{
+	margin: 0 auto;
+}
+#twitter{
+	
+	
+	margin:0 auto;
 }
 
-nav ul li {
-    list-style: none;
-    display: inline-block;
-    margin-right: 15px;
-}
-
-nav #user-account {
-    float: right;
-}
-#map {
-	height: 93%;
-	width: 93%;
-}

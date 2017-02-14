@@ -102,11 +102,13 @@ public class User extends AbstractEntity {
 		switch(carrier){
 		case "T-Mobile": end = "@T-Mobile.com";
 			break;
-		case "AT&T": end = "@txt.att.net";
+		case "ATT": end = "@txt.att.net";
 			break;
 		case "Verizon": end = "@Vtext.com";
 			break;
 		case "Sprint": end = "@messaging.sprintpcs.com";
+			break;
+		case"US Cellular": end = "email.uscc.net";
 		}
 		return number + end;
 	}

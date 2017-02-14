@@ -3,22 +3,26 @@
 <head th:replace="template :: dochead">
 </head>
 <body>
-
 	<div th:replace="template :: navigation"></div>
-	<p>Observe the provided map to determine which zone(s) you would like to be notified for.</p>
-	<div id="map">map
-	<img id="map" th:src="@{/images/map.jpg}"></img>
-	
-	
+	<div class="container-fluid">
+		<h1>Add a new Zone</h1>
+		<h3 class="error" th:text="${error}"></h3>
+		<div id="testwrap">
+			<p>Observe the provided map to determine which zone(s) you would like to be notified for.</p>
+			<form method="post">
+			   <div class="form-group">
+			    <label class="control-label" for="znumber">Select a zone to add for notifications, you can have up to 3 zones.</label>
+				  	<select name = "znumber" class="form-control indput-md">
+				  		<option >Select a zone</option>
+				  		<option  th:each="n : ${#numbers.sequence(1,40)}" th:value="${n}" th:text="${n}"></option>
+				  	</select>
+			  	</div>
+			  		<button type="submit" class="btn btn-success">Add Zone</button>
+			</form>
+		</div>
+		<div id="map">
+			<img id="map" th:src="@{/images/map.jpg}" class="img-responsive"></img>
+		</div>
 	</div>
-	
-	<form method="post">
-	   
-	    <label>Select a zone to add for notifications, you can have up to 3 zones.
-	    </label>
-	  	<input type="text" name="znumber" th:value="${znumber}"></input>
-	    <button type="submit">Create</button>
-	</form>
-
 </body>
 </html>

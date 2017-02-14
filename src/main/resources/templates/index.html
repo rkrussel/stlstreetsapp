@@ -3,15 +3,24 @@
 <head th:replace="template :: dochead">
 </head>
 <body>
-
-	<div th:replace="template :: navigation"></div>
-
-	<h1>Welcome</h1>
-	<h3 th:text="${logout}"></h3>
-	<span class = "error" th:text="${confirm}"></span>
-	<p>Please <a href="/signup">register </a>to receive text notifications about street cleaning services near you, so that 
-	you can move your vehicle and not get a ticket in the city of St. Louis!
-	</p>
-	
-	</body>
+	<div class="container-fluid">
+		<div th:replace="template :: navigation"></div>
+		
+		<div id="welcome">
+			<h1>Welcome</h1>
+			<h3  class="error" th:text="${logout}"></h3>
+			<span class = "error" th:text="${confirm}"></span>
+			
+			<p>Please <a href="/signup">register </a>to receive text notifications about street cleaning services near you, so that 
+			you can move your vehicle and not get a ticket in the city of St. Louis!
+			
+			</p><br/>
+			<a class="btn btn-success " href="/signup"> Register</a>
+			<hr/>
+			<h2>COMIMNG SOON</h2>
+			<p>Soon we will bring you other information in regards to The City of St. Louis' traffic to help you get around.</p>
+		</div>
+	</div>
+	<script  type="text/javascript"  src="//platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</body>
 </html>

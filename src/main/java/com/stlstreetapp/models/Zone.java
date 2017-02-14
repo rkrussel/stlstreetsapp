@@ -37,8 +37,7 @@ public class Zone extends AbstractEntity{
 	public void setZoneNumber(String zone){
 		this.zoneNumber = zone;
 	}
-	
-	
+		
 	@ManyToOne
 	public User getEmail(){
 		return email;
@@ -59,14 +58,5 @@ public class Zone extends AbstractEntity{
 		
 		return true;
 	}
-	private JavaMailSender javaMailSender;
-	NotificationService mail = new NotificationService(javaMailSender);
 	
-	@Scheduled(cron = "*/2 * * * * *")
-	public void mailZoneOne(){
-	System.out.println("new testttt");
-	}
-	
-	
-
 }

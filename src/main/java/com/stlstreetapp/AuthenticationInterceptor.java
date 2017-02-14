@@ -7,21 +7,24 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 import com.stlstreetapp.controllers.AbstractController;
 import com.stlstreetapp.models.User;
 import com.stlstreetapp.models.dao.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
     UserDao userDao;
 
-    @Override
+    
+	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-
-        List<String> authPages = Arrays.asList("/newzone", "/myaccount", "/edit");
+    	
+        List<String> authPages = Arrays.asList("/newzone", "/myaccount", "/edit", "/confirm", "/logout");
 
         // Require sign-in for auth pages
         if ( authPages.contains(request.getRequestURI()) ) {
@@ -35,6 +38,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
             	
             	if (user != null) {
             		isLoggedIn = true;
+            		
+                	
             	}
             }
 
@@ -47,4 +52,11 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
         return true;
     }
+    
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+    	
+    }
+    
+    
+    
 }
